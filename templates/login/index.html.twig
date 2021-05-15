@@ -1,30 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LoginController!{% endblock %}
+{% block title %}
+    Hello LoginController!
+{% endblock %}
 
 {% block body %}
-<div class="container mt-4">
-		<h1>Inscription</h1>
-		{% for message in app.flashes('success')%}
-			<div class="alert alert-success">
-				{{message}}</div>
-		{% endfor %}
-		<div class="form-group">
-			<div class="row">
-				<div class="col-md-8 d-flex flex-column">
-                {{ form_start(form, {'method': 'POST'}) }}
-					{{form_label(form.username)}}
-					{{form_widget(form.username, { 'attr': {'class': 'form-control'}}) }}
-					                    
-					{{form_label(form.password)}}
-                    {{ form_widget(form.password, { 'attr': {'class': 'form-control'}}) }}			
-
-				</div>
-			</div>
-			<button class="btn btn-primary mt-4">
-				{{button|default('Se connecter')}}
-			</button>
-			{{form_end(form)}}
+    <div class="container mt-4">
+        <h1>
+            Inscription
+        </h1>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+		{% if error %}
+		<div class="alert alert-danger">
+			{{ error.messageKey|trans(error.messagedata, 'security') }}
 		</div>
-	</div>
+	{% endif %}
+		 
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-8 d-flex flex-column">
+                    {{ form_start(form, {'method': 'POST'}) }}
+                    {{ form_label(form.username) }}
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control' }}
+                    ) }}
+                    					                    
+                    					
+                    {{ form_label(form.password) }}
+                    {{ form_widget(form.password, { 'attr': {'class': 'form-control' }}
+                    ) }}			
+                    
+                    				
+                </div>
+            </div>
+            <button class="btn btn-primary mt-4">
+                {{ button|default('Se connecter') }}
+            </button>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

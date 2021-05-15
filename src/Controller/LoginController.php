@@ -25,7 +25,8 @@ class LoginController extends AbstractController
         $this->addFlash('success', 'Vous êtes connecté en tant que : ');
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername, 
-            'error' => $error
+            'error' => $error,
+            'current_menu' => 'login',
             ]);
     }
 

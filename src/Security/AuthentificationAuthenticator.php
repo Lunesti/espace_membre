@@ -70,7 +70,7 @@ class AuthentificationAuthenticator extends AbstractFormLoginAuthenticator imple
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $credentials['username']]);
 
         if (!$user) {
-            throw new UsernameNotFoundException('L\'email n\'a pas pu être trouvé');
+            throw new UsernameNotFoundException('L\'username n\'a pas pu être trouvé');
         }
 
         return $user;

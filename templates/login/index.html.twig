@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page d'inscription
-{% endblock %}
+{% block title %}Hello LoginController!{% endblock %}
 
 {% block body %}
-	<div class="container mt-4">
+<div class="container mt-4">
 		<h1>Inscription</h1>
 		{% for message in app.flashes('success')%}
 			<div class="alert alert-success">
@@ -16,19 +15,14 @@
                 {{ form_start(form, {'method': 'POST'}) }}
 					{{form_label(form.username)}}
 					{{form_widget(form.username, { 'attr': {'class': 'form-control'}}) }}
-					{{form_label(form.email)}}
-					{{form_widget(form.email, { 'attr': {'class': 'form-control'}}) }}
-                    
-					{{form_label(form.password.first)}}
-                    {{ form_widget(form.password.first, { 'attr': {'class': 'form-control'}}) }}
-                    {{form_label(form.password.second)}}   
-                    {{ form_widget(form.password.second, { 'attr': {'class': 'form-control'}}) }}
-				
+					                    
+					{{form_label(form.password)}}
+                    {{ form_widget(form.password, { 'attr': {'class': 'form-control'}}) }}			
 
 				</div>
 			</div>
 			<button class="btn btn-primary mt-4">
-				{{button|default('Envoyer')}}
+				{{button|default('Se connecter')}}
 			</button>
 			{{form_end(form)}}
 		</div>

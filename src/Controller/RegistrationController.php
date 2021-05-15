@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends AbstractController
@@ -28,12 +29,14 @@ class RegistrationController extends AbstractController
     {
 
         $newUser = new User();
+        
         $form = $this->createForm(RegistrationType::class, $newUser);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $password = $passwordEncoder->encodePassword($newUser, $newUser->getPassword());
             $newUser->setPassword($password);
+            $newUser->setRoles(['ROLE_USER']);
             $this->em->persist($newUser);
             $this->em->flush();
             $this->addFlash('success', 'Inscription réussie !');

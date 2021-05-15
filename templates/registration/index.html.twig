@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegistrationController!
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Inscription</h1>
+		{% for message in app.flashes('success')%}
+			<div class="alert alert-success">
+				{{message}}</div>
+            {% endfor %}
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-8 d-flex flex-column">
+						{{form_start(form)}}
+						{{form_label(form.username)}}
+						{{form_widget(form.username, { 'attr': {'class': 'form-control'}}) }}
+						{{form_label(form.email)}}
+						{{form_widget(form.email, { 'attr': {'class': 'form-control'}}) }}
+						{{form_label(form.password)}}
+						{{form_widget(form.password, { 'attr': {'class': 'form-control'}}) }}
+
+					</div>
+				</div>
+				<button class="btn btn-primary mt-4">
+					{{button|default('Envoyer')}}
+				</button>
+				{{form_end(form)}}
+			</div>
+		</div>
+	{% endblock %}
